@@ -61,6 +61,7 @@ In Bacillus stearothermophilus, we obtained the following final motifs:
 
 Here we have two similar motifs obtained at the same read length.  The RCCGGY motif is real and was extracted first.  Because all VCCGGB reads are also RCCGGY, the number of "additional" reads to identify VCCGGB was only 50 (573 - 523), suggesting that the additional bases at the outside positions may be a detectable off-target activity of RCCGGY methylation.  Indeed, examination of the verbose output from iteration 1, which detected RCCGGY, shows trace activity at C in the R position and G in the Y position:
 
+                           A        C        G        T
       12           R     0.241    0.045    0.714    0.000
       13          [C]    0.000    1.000    0.000    0.000
       14           C     0.003    0.993    0.000    0.003
