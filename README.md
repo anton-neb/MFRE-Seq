@@ -3,7 +3,7 @@ Code to accompany the publication "Genome-Wide Identification of 5-Methylcytosin
 
 OVERVIEW
 
-Code comprises a preprocessing perl script (process_reads.pl), plus a pipeline with a bash driver script (mfre_pipeline.sh) and four associated perl scripts (read_stats.pl, lengths_to_check.pl, find_motifs.pl, and final_motifs.pl).  The pipeline requires a FASTA file that is in the format specified by the preprocessing script, so preprocessing must be done first.  The preprocessing step can take more than an hour for large files, while the pipeline generally runs in seconds.
+Code comprises a preprocessing perl script (process_reads.pl), a pipeline with a bash driver script (mfre_pipeline.sh) and four associated perl scripts (read_stats.pl, lengths_to_check.pl, find_motifs.pl, and final_motifs.pl), and a postprocessing perl script (analyze_motifs.pl).  The pipeline requires a FASTA file that is in the format specified by the preprocessing script, so preprocessing must be done first.  The preprocessing step can take more than an hour for large files, while the pipeline generally runs in seconds.  Postprocessing is optional, but useful for analyzing the component sequences of degenerate motifs reported by the pipeline.
 
 Preprocessing (process_reads.pl):
   Input (1) a FASTA file of Illumina or Ion Torrent sequence reads and (2) a FASTA file of the reference genome from which the reads were derived.
@@ -20,6 +20,9 @@ Pipeline (mfre_pipeline.sh), sole input is the FASTA output file from the prepro
   Print a summary of all motifs found, and the number of (16,16) and (16,17) reads derived from each (final_motifs.pl).
 
 A summary of operations and results is printed to STDOUT as the pipeline runs, and a more verbose file of output is also created.
+
+Postprocessing (analyze_motifs.pl):
+  Input is (1) a FASTA file of the reference genome from which the reads were derived, (2) a FASTA file of Illumina or Ion Torrent sequence reads, (3) a methylated motif, and (4) the expected length of a (16,16) sequence read derived from the motif.  Output is a text file showing genome-centric and read-centric data for the motif and for each non-degenerate sequence ("submotif") conforming to the motif.  Genome-centric data comprises the number of sites, the fraction of all motif sites made up by the submotif, and the fractions of all sites represented in the read file by (16,16), (16,17), or (15,16) reads.  Read-centric data comprises the number of reads for the motif or submotifs, and the fraction of all reads conforming to the submotif. 
 
 NOTES ON INDIVIDUAL PERL SCRIPTS
 
